@@ -1,6 +1,7 @@
 $servers = Get-ADComputer -SearchBase "TYPESEARCHBASEHERE" -Filter *
+# This Script checks for enabled SSL and TLS Versions
+# Edit TYPESEARCHBASEHERE to include AD Search base where your servers are located
 $scriptblock = {
-# This Script checks for enabled SSL and TLS Versions and writes them to \\DOMAINFQDN\netlogon\tlscheck.txt
 function get-tlsversions {
 
 Write-Output "------------------------------"
