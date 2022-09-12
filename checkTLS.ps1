@@ -1,5 +1,4 @@
 #check all servers for TLS and SSL Versions and output them to console
-$servers = Get-ADComputer -Filter 'operatingsystem -like "*server*" -and enabled -eq "true"'
 $scriptblock = {
 function get-tlsversions {
 
@@ -167,4 +166,4 @@ Write-Output "------------------------------"
 }
 get-tlsversions
 }
-Invoke-Command -ComputerName $servers.DNSHostName -ScriptBlock $scriptblock
+(Get-ADComputer -Filter 'operatingsystem -like "*server*" -and enabled -eq "true"').DNSHostname | foreach {Invoke-Command -ComputerName $_ -ScriptBlock $scriptblock}
