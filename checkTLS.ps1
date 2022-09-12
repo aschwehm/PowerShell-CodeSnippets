@@ -167,7 +167,7 @@ Write-Host "------------------------------"
 get-tlsversions
 }
 try{
-(Get-ADComputer -Filter 'operatingsystem -like "*server*" -and enabled -eq "true"').DNSHostname | foreach {Invoke-Command -ComputerName $_ -ScriptBlock $scriptblock}
+(Get-ADComputer -Filter 'operatingsystem -like "*server*" -and enabled -eq "true"').DNSHostname | foreach {Invoke-Command -ComputerName $_ -ScriptBlock $scriptblock -ErrorAction Continue}
 }Catch{
 Write-Host $_.Exception.Message -ForegroundColor Red
 }
